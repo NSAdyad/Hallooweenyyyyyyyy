@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Complete Restaurant Experience</title><link rel="stylesheet" href="styles.css"></head><body><header class="topbar"><div class="container nav"><a class="brand" href="index.html">🎃 HALLOWEEN INTERACTIVE WORLD</a><nav class="navlinks"><a href="restaurant.html">Restaurant World</a><a href="create-restaurant.html">Build Your Restaurant</a><a href="ordering.html">Complete Restaurant Experience</a></nav></div></header><main class="container page"><div class="toolbar"><div><span class="pill">13-step whole service journey</span><h1>🕯️ From “Welcome” to “Goodbye”</h1><p class="lead">One large, clear slide at a time. Use the arrows or the numbered steps to move through the complete restaurant service sequence.</p></div><a class="btn secondary" href="index.html">← Home</a></div><section class="service-slide card" aria-live="polite"><div class="service-top"><span class="pill" id="stepCount">1 / 13</span><span class="small">← / → to navigate</span></div><div class="service-image"><img id="stepImage" src="ordering-01.jpg" alt="Customer arrives"></div><div class="service-copy"><div class="service-kicker" id="stepNumber">STEP 1</div><h2 id="stepTitle">Customer arrives</h2><p id="stepDescription">The customer enters the restaurant.</p><div class="notice"><b>Useful language:</b> <span id="stepPhrase">“Good evening. Do you have a table for two?”</span></div></div><div class="service-controls"><button class="btn secondary" id="prev">← Previous</button><div class="service-dots" id="dots"></div><button class="btn" id="next">Next →</button></div></section><section class="service-index card"><h2>Service sequence</h2><div class="service-index-grid" id="indexGrid"></div></section></main><script>
+const steps=[
+['Customer arrives','The customer enters the restaurant.','ordering-01.jpg','“Good evening. Do you have a table for two?”'],
+['Welcome the customer','The waiter greets the customer warmly and makes them feel welcome.','ordering-02.jpg','“Good evening. Welcome. How many people are you?”'],
+['Seating','The waiter shows the customer to their table and helps them get seated.','ordering-03.jpg','“This way, please.”'],
+['Drinks','The waiter presents the drinks menu and serves the drinks.','ordering-04.jpg','“Would you like something to drink?”'],
+['Choosing food','Customers read the menu, choose their food and ask questions if needed.','ordering-05.jpg','“What do you recommend?”'],
+['Taking the order','The waiter takes the complete food order and notes special requests.','ordering-06.jpg','“Are you ready to order?”'],
+['Confirming the order','The waiter repeats the order and checks that everything is correct.','ordering-07.jpg','“So that’s one steak and one vegan curry. Is that correct?”'],
+['Serving the food','The waiter brings the food to the table and checks whether anything else is needed.','ordering-08.jpg','“Here is your steak. Enjoy your meal.”'],
+['Checking the meal','The waiter checks that everything is correct and asks whether the customers are enjoying their meal.','ordering-09.jpg','“Is everything alright?”'],
+['Dessert and coffee','The waiter offers dessert and coffee or another drink after the main course.','ordering-10.jpg','“Would you like to see the dessert menu?”'],
+['The bill','The waiter presents the bill clearly and politely.','ordering-11.jpg','“Here is your bill.”'],
+['Payment','The customer pays by cash or card and the waiter completes the payment.','ordering-12.jpg','“Would you like to pay by card or cash?”'],
+['Goodbye','The waiter thanks the customers and says goodbye politely.','ordering-13.jpg','“Thank you very much. Have a lovely evening.”']
+];
+let i=0;const $=id=>document.getElementById(id);
+function render(){const s=steps[i];$('stepCount').textContent=`${i+1} / ${steps.length}`;$('stepNumber').textContent=`STEP ${i+1}`;$('stepTitle').textContent=s[0];$('stepDescription').textContent=s[1];$('stepImage').src=s[2];$('stepImage').alt=s[0];$('stepPhrase').textContent=s[3];$('prev').disabled=i===0;$('next').disabled=i===steps.length-1;document.querySelectorAll('.service-dot').forEach((b,n)=>b.classList.toggle('active',n===i));document.querySelectorAll('.service-index-btn').forEach((b,n)=>b.classList.toggle('active',n===i));}
+function move(n){i=Math.max(0,Math.min(steps.length-1,i+n));render();}
+$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1)});
+$('dots').innerHTML=steps.map((_,n)=>`<button class="service-dot" aria-label="Step ${n+1}" onclick="i=${n};render()"></button>`).join('');
+$('indexGrid').innerHTML=steps.map((s,n)=>`<button class="service-index-btn" onclick="i=${n};render()"><span>${n+1}</span>${s[0]}</button>`).join('');render();
+</script>
+</body></html>

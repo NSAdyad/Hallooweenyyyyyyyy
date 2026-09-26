@@ -1,0 +1,9 @@
+HAUNTED NIGHT VISUAL BUILD
+
+This build applies the supplied Haunted Night reference visual language across the landing page and internal pages: cinematic blue/purple night, orange/gold gothic headings, ornate dark panels, glowing controls, and consistent themed navigation.
+
+Landing page: 8 main modules matching the reference layout. Restaurant World contains the 54-image locked vocabulary sequence and a direct Restaurant Vocabulary Game continuation.
+
+Image policy: locked restaurant primary assets are used without compression or forced cropping.
+
+Verification performed: ZIP structure, HTML asset references, and file presence were checked programmatically. Browser/device visual rendering was not performed in this environment.
